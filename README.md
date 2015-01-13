@@ -11,7 +11,7 @@ Status: Beta
 
 INSTALL:
 
-go get github.com/corebob/bookmarkd
+$ go get github.com/corebob/bookmarkd
 
 USAGE:
 
