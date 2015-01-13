@@ -1,14 +1,14 @@
 /*
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 // CONTRIBUTORS AND COPYRIGHT HOLDERS (c) 2013:
 // Dag Robøle (dag D0T robole AT gmail D0T com)
@@ -30,7 +30,6 @@ import (
 	"syscall"
 
 	"github.com/go-martini/martini"
-	"github.com/martini-contrib/render"
 )
 
 var BookmarkFile string
@@ -80,7 +79,7 @@ func LoadBookmarks(bm *Bookmarks) error {
 	return nil
 }
 
-func handleRequest(w http.ResponseWriter, r *http.Request, rnd render.Render, bm *Bookmarks) {
+func handleRequest(w http.ResponseWriter, r *http.Request, bm *Bookmarks, t *template.Template) {
 
 	r.ParseForm()
 
@@ -125,13 +124,15 @@ func handleRequest(w http.ResponseWriter, r *http.Request, rnd render.Render, bm
 			}
 			params.Add("fp", entry.Name)
 			u.RawQuery = params.Encode()
-			str += template.HTML("<a href='" + u.String() + "'>" + off + "<img src='/folder.png'></img>&nbsp;" + entry.Name + "</a><br>")
+			str += template.HTML("<a href='" + u.String() + "'>" + off + "<img src='data:image/png;base64," + PNG_Folder + "'></img>&nbsp;" + entry.Name + "</a><br>")
 		} else if entry.Type == "url" {
-			str += template.HTML("<a href='" + entry.Url + "'>" + off + "<img src='/file.png'></img>&nbsp;" + entry.Name + "</a><br>")
+			str += template.HTML("<a href='" + entry.Url + "'>" + off + "<img src='data:image/png;base64," + PNG_File + "'></img>&nbsp;" + entry.Name + "</a><br>")
 		}
 	}
 
-	rnd.HTML(200, "index", str)
+	if err := t.Execute(w, str); err != nil {
+		log.Println(err)
+	}
 }
 
 func main() {
@@ -168,11 +169,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	bm := new(Bookmarks)
-
 	m := martini.Classic()
-	m.Use(render.Renderer())
+
+	bm := new(Bookmarks)
 	m.Map(bm)
+
+	templ, err := template.New("index").Parse(TEMPL_Index)
+	m.Map(templ)
 
 	m.Get("/", handleRequest)
 
