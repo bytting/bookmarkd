@@ -1,5 +1,21 @@
+/*
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+// CONTRIBUTORS AND COPYRIGHT HOLDERS (c) 2013:
+// Dag Robøle (dag D0T robole AT gmail D0T com)
+
 package main
 
+// ICO_FavIcon, a favicon in base64 format
 var ICO_FavIcon string = `
 AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAABlqclGQm+EjQAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcOJDZW
@@ -23,6 +39,7 @@ arHQ2nG62r5zvdyhdb/fhXXA32lssctMYZ+0MFCGmBMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAA9/8AAMfnAACBxwAAAAcAAAAPAAAADwAAAAcAAAADAAAAAQAAAB8AAAAfAAAAPwAAAD8AAAA/
 AAAAPwAAB/8AAA==`
 
+// PNG_Folder, a base64 encoded folder icon, PNG format
 var PNG_Folder string = `
 iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACjElEQVR42nWSTWgTQRiGv/1N00Za
 gySkeFAPYkDwoiUHm6RFDzbVBqvVoJBWjyLYg6ARBVsUj0KrBIu4eBBEPChVPBQL4sWDf4h4FEyw
@@ -38,6 +55,7 @@ ihSqxNWv5V8Fnix8WSvzWilgBrLchgIKufhe1iwzNja3mxXipDiXWikMNSiw/0y6QYHUxRiFHxWN
 G+7ZiXc5att2FE/fSm1LYBTYVX7zeSVzOvf4oet63roQ243LZwY7tvR2b9+2uTsaDvqjquE9jY3l
 3zXv+Q17WXIurtbLMQAAAABJRU5ErkJggg==`
 
+// PNG_File, a base64 encoded file icon, PNG format
 var PNG_File string = `
 iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAADWElEQVR42o2SaUxTWRTH/6+VtiJ2
 obUUy5NFohFMjNFoUCcZdTIBI1EUw3wwhIjiUhNcgnGJWnEN44gLwpi4oKiJLG6DAdRE64wGQywK
@@ -57,6 +75,7 @@ MZUCcrMyM3aVFfYsWjyX4aw2SIn1bxr9ZIFcNQk+rx9B0swgcWj9YosCGnefaVjDfAssWZ61imVV
 eWSYBKTbEaJoMEeSvF6v3+J0eaxuX8BPrtodCEXe3X3e3RvN+xdiqXcg4OWZGwAAAABJRU5ErkJg
 gg==`
 
+// TEMPL_Index, HTML template
 var TEMPL_Index string = `
 <!DOCTYPE HTML>
 <html>
