@@ -1,5 +1,5 @@
 # bookmarkd
-Vimium friendly view of the bookmark bar in Chromium, running as a local service
+Vimium friendly view of the bookmark bar in Chromium, running as a local service on port 9898
 
 Platforms: Linux
 
@@ -13,6 +13,8 @@ INSTALL:
 
 $ go get github.com/corebob/bookmarkd
 
-USAGE:
+USAGE EXAMPLES:
+
+$ bookmarkd --help
 
 $ bookmarkd &
